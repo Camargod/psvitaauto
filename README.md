@@ -138,6 +138,38 @@ network (shared router, or the phone's hotspot) and connect to `phone-ip:5277`.
 Starting the server is the Android Auto developer toggle (manual for v1 — the
 third-party wireless auto-triggers were broken by AA 17.4+).
 
+### Wireless blocker: phone-side authorization
+
+There is no way to remove the phone-side setup entirely. The phone's Android
+Auto app only accepts wireless projection from **head units Google recognizes**:
+the handshake exchanges certificates signed by Google, and the phone validates
+the head unit's identity before accepting a connection. A homebrew Vita has no
+(and cannot obtain) a valid Google certificate, so the phone refuses it by
+default.
+
+The "debug mode" people enable is actually one of two authorizations:
+
+- **Developer options → "Wireless Android Auto"** (Android 11+): lets the app
+  accept any head unit, including unofficial ones.
+- **Android Auto → Start head unit server** (developer mode): manually starts
+  the projection server.
+
+Both are a **one-time** setup: once enabled (and the Vita paired), the toggle
+persists across phone reboots and subsequent connections are automatic — no
+per-session activation is needed.
+
+Realistic paths to reduce friction:
+
+| Path | Phone friction | Trade-off |
+|---|---|---|
+| Developer toggle (Android 11+) | one-time, then automatic | requires enabling dev options once |
+| USB-first pairing | zero after first pairing | needs AA-over-USB on the Vita (USB host) first |
+| AAWireless dongle | none | extra paid hardware |
+
+The zero-configuration paths are USB-first pairing or a dongle that presents a
+Google-recognized identity; a pure homebrew wireless build cannot bypass the
+certificate check, so the developer toggle remains the default for v1.
+
 ## License
 
 PSVitaAuto is free software: you can redistribute it and/or modify it under the
