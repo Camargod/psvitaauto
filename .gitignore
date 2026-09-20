@@ -1,0 +1,15 @@
+# Build output
+build/
+build-host/
+*.vpk
+*.self
+*.suprx
+
+# Local device config (contains the phone's IP)
+psvitaauto.cfg
+
+# Editor / OS
+.DS_Store
+*.swp
+.vscode/
+.idea/
